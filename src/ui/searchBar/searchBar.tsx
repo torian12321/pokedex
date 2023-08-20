@@ -1,22 +1,26 @@
-import { useState } from "react";
+// import { useState } from "react";
+import type { FormEvent } from "react";
+import type { SearchBarProps } from "./searchBar.types";
 
-export const SearchBar = () => {
-  const [value, setValue] = useState<string>("");
+export const SearchBar = ({ value, onChange }: SearchBarProps) => {
+  // const [value, setValue] = useState<string>("");
 
-  const onInput = (e: any) => setValue(e.target.value);
+  const handleOnChange = (e: FormEvent<HTMLInputElement>) =>
+    onChange(e.currentTarget.value);
 
-  const onClear = () => {
-    setValue("");
+  const handelOnSubmit = () => {
+    onChange(value);
   };
+  // const onClear = () => {
+  //   setValue("");
+  // };
 
   return (
-    <>
-      <form onSubmit={onClear}>
-        <input value={value} onInput={onInput} />
-        <button type="button" onClick={onClear}>
-          clear
-        </button>
-      </form>
-    </>
+    <form onSubmit={handelOnSubmit}>
+      <input value={value} onInput={handleOnChange} />
+      {/* <button type="button" onClick={onClear}>
+        clear
+      </button> */}
+    </form>
   );
 };

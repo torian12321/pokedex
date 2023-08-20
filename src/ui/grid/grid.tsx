@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Card } from "../card";
 import { List, ListItem } from "./grid.styles";
-import { pokemons } from "../../pokemons";
-// import { motion } from "framer-motion";
+import type { PokemonGrid } from "./grid.types";
 
 const container = {
   hidden: { opacity: 1, scale: 0 },
@@ -24,7 +23,7 @@ const list = {
   },
 };
 
-export const Grid = () => {
+export const Grid = ({ pokemons }: PokemonGrid) => {
   const [selectedId, setSelectedId] = useState<any>(null);
   const handleOnClick = (id: string) => {
     if (selectedId === id) {
@@ -50,8 +49,8 @@ export const Grid = () => {
         <ListItem key={item.id} variants={list}>
           <Card
             id={item.id}
-            name={item.title}
-            description={item.subtitle}
+            name={item.name}
+            description={item.name}
             img={item.img}
             open={selectedId === item.id}
             onGoNext={goNext}
