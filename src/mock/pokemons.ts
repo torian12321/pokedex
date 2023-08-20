@@ -1,9 +1,4 @@
-export interface Pokemon {
-  id: string;
-  name: string;
-  url: string;
-  img: string;
-}
+import type { Pokemon } from "../types";
 
 const original: Omit<Pokemon, "id" | "img">[] = [
   {
